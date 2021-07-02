@@ -25,6 +25,68 @@ function HomepageHeader() {
   )
 }
 
+const features = [
+  {
+    image: 'https://avatars.githubusercontent.com/u/23579958?v=4',
+    url: 'https://t.me/AhIMi_channel',
+    title: 'GitHub page',
+  },
+  {
+    image: '/img/landing/AhIMi.png',
+    url: 'https://t.me/AhIMi_channel',
+    title: 'AhIMi channel | telegram',
+  },
+  {
+    image: '/img/landing/twitter.svg',
+    url: 'https://twitter.com/realamirhe',
+    title: '@realamirhe | twitter',
+  },
+]
+
+function HomeBody() {
+  return (
+    <main className="hero">
+      <div className="container">
+        <ul>
+          <li className={styles.li}>
+            ⚡ If<b>premature optimization</b> is the root of all evil, Then I
+            have an<b>evil factory</b>.
+          </li>
+          <li className={styles.li}>
+            💬 If you are searching for<b>new idea</b>, there you are.
+          </li>
+          <li className={styles.li}>
+            ⚡ I explain things in a<b>complex</b> and<b>precise</b> manner
+            <b>from the beginning</b>.
+          </li>
+          <li className={styles.li}>
+            ⚡ If<b>premature optimization</b> is the root of all evil, Then I
+            have an<b>evil factory</b>.
+          </li>
+          <li className={styles.li}>
+            🚒<b>Kryptonite</b> and<b>misconceptions</b> about other's
+            profession are two of my<b>main weaknesses</b>.
+          </li>
+
+          <li className={styles.li}>
+            🎨 I occasionally<b>draw</b> somethings.
+          </li>
+        </ul>
+
+        {features.map(item => (
+          <a href={item.url} title={item.title} target="_blank">
+            <img
+              src={item.image}
+              width="85"
+              className={clsx('shadow--lw', styles.img)}
+            />
+          </a>
+        ))}
+      </div>
+    </main>
+  )
+}
+
 export default function Home() {
   const { siteConfig } = useDocusaurusContext()
 
@@ -34,6 +96,7 @@ export default function Home() {
       description="Description will go into a meta tag in <head />"
     >
       <HomepageHeader />
+      <HomeBody />
     </Layout>
   )
 }

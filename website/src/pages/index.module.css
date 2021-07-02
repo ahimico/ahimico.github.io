@@ -23,3 +23,13 @@
   align-items: center;
   justify-content: center;
 }
+
+.img {
+  border-radius: 8px;
+  width: 85px;
+  margin: 0 8px;
+}
+
+.li {
+  list-style-type: circle;
+}
