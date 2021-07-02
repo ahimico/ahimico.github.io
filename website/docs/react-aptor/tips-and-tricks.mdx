@@ -1,0 +1,115 @@
+---
+id: tips-&-tricks
+title: Tips & Tricks
+sidebar_position: 4
+---
+
+### Using of optional chaining
+
+> function call can be much more readable with [optional chaining](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining) & related [babel plugin](https://babeljs.io/docs/en/babel-plugin-proposal-optional-chaining)
+
+```jsx
+const apiKeyHandler = () => ref.current?.api_key()
+```
+
+### Better naming
+
+> In case you need `ref.current` more than one time, it is a good idea to rename it at the first place
+
+```jsx
+const apiKeyHandler = () => {
+  const { current: api } = ref // store ref.current in `api`
+  if (api) {
+    api.api_key()
+  }
+}
+```
+
+### Can I remove if check in handlers
+
+Cause the default value for ref can be undefined (in **createRef**) and null (in **useRef**) Typescript will complain about possibility for not-existence of apis. [see more](https://fettblog.eu/typescript-react/hooks/#useref).
+In normal world react will bind your API to given ref after the Connector mount
+
+If you're using ref in useEffect or somewhere which is guaranteed to have the ref bounded to values, you can return proxy object in your getAPI function to bind all api functions simultaneously.
+
+```js
+export default function getAPI(thirdParty, params) {
+  if (!thirdParty)
+    return () =>
+      new Proxy(
+        {},
+        {
+          get: (_, prop) => {
+            // Possible to mock differently for different props
+            return noop
+          },
+        },
+      )
+
+  return () => ({
+    api_key() {
+      // third-party is defined here for sure :)
+      console.log(thirdParty)
+    },
+  })
+}
+```
+
+### Micro api instructions
+
+> You can access all of you apis via `this` keyword
+
+```js
+export default function getAPI(sound, params) {
+  return () => ({
+    _state() {
+      return sound.getState()
+    },
+
+    play() {
+      if (this._state() === 'LOADED') sound.play()
+    },
+  })
+}
+```
+
+> It's better to start name of this internal functions with `_`
+
+### The `this` problem in API object
+
+In a case you see this keyword usage in third-party API
+you must specifying `this` something other than returned API object.
+The following examples is for howler integration using react-aptor:
+
+```js
+{
+  // ❌ It doesn't work
+  state: howler.state,
+
+  // 🆗 this is Okay
+  state: howler.state.bind(howler),
+  // 🆗 this is also Okay
+  state: () => howler.state(),
+  // 🆗 this is also Okay, too
+  state() {
+    return howler.state();
+  }
+}
+```
+
+### How to get API-Object type
+
+You can use something like the following:
+
+```ts
+export type APITypes = ReturnType<ReturnType<typeof getAPI>>
+```
+
+### How to make a custom react integration package using react-aptor
+
+1. Name you package **raptor-something** :)
+2. Use minimum possible configuration for your api
+3. Interact to props change in your component using `useEffect` and proper `deps` array
+4. Bind another ref to you Connector using fork-ref idea, for other possible usage
+
+See an in-action full example of raptor-howler in [raptor-howler/examples](https://github.com/amirHossein-Ebrahimi/raptor-howler/tree/master/example)

@@ -1,0 +1,70 @@
+---
+id: api-reference
+title: API Reference
+sidebar_position: 3
+---
+
+## Parameters
+
+`useAptor` accepts a ref, a configuration object and a dependencies array parameter, with the following options:
+
+```typescript
+// every possible return value as an api value e.g. function, class, ...
+type APIObject = Record<string, any>;
+
+interface AptorConfiguration<T> {
+
+  getAPI: (instance: T|null, prams?: any) => (() => APIObject);
+
+  instantiate: (node: HTMLElement|null, params?: any) => T|null;
+
+  destroy?: (instance: Nullable<T>, params?: any) => void;
+
+  params?: any;
+}
+
+const useAptor<T>(
+  // React ref holder for APIObject key-value pairs
+  ref: Ref<APIObject>,
+  configuration: AptorConfiguration<T>,
+  deps: any[] = []
+  // Return a bindable react ref object for your dom elements
+): RefObject<HTMLElement> {
+  // ...
+}
+```
+
+## Core
+
+### **ref**
+
+The react **useRef** or **createRef** ref instance which has been passed throw **react.forwardRef** method.
+your api will be stored in this ref.
+
+### **configuration**
+
+- ### **instantiate**
+
+  > function(node, params): Instance
+
+  A function that receives probable bounded-node and params. It then returns an instance of your third-party.
+
+- ### **destroy**
+
+  > function(previousInstance, params): void
+
+  A function that receives previous created instance and params. It is useful when you want to perform the cleanup before new instance creation. e.g. **remove event listeners**, **free up allocated memories**, **destroy internally** & etc
+
+- ### **getAPI**
+
+  > function(Instance, params): ApiObject
+
+  A function which receives instance of you third-party and params. It then returns a key-value pair object for api handlers.
+
+- ### **params** `any`
+
+  Params can have any arbitrary type and can be used with props or pre-defined options.
+
+### **deps** `[]`
+
+React dependencies array for re-instantiating your third-party-packages. It will call `instantiate` with latest node, params when ever shallow comparison for with the previous deps array finds inequality.
