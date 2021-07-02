@@ -5,13 +5,14 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula')
 module.exports = {
   title: 'AhiMi',
   tagline: 'My representable activities',
-  url: 'https://ahimico.github.io',
-  baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
   organizationName: 'ahimico', // Usually your GitHub org/user name.
-  projectName: 'ahimico website', // Usually your repo name.
+  projectName: 'ahimico.github.io', // Usually your repo name.
+  url: 'https://ahimico.github.io',
+  baseUrl: '/ahimico.github.io/',
+  trailingSlash: false,
   themeConfig: {
     navbar: {
       title: 'AhIMi',
