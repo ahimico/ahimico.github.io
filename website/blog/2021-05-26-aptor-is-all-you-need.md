@@ -2,7 +2,7 @@
 slug: aptor-is-all-you-need
 title: Aptor Is All You Need
 author: Amir.H Ebrahimi
-author_title: Weblite frontend developer
+author_title: Frontend developer @Weblite
 author_url: https://github.com/amirHossein-Ebrahimi
 author_image_url: https://avatars.githubusercontent.com/u/23579958?v=4
 tags: [react-aptor, react, api]
