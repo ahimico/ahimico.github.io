@@ -1,1 +1,0 @@
-(self.webpackChunkwebsite=self.webpackChunkwebsite||[]).push([[890],{465:function(a){"use strict";a.exports=JSON.parse('{"allTagsPath":"/blog/tags","slug":"react-aptor","name":"react-aptor","count":1,"permalink":"/blog/tags/react-aptor"}')}}]);
