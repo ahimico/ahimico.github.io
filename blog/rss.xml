@@ -4,9 +4,16 @@
         <title>AhiMi Blog</title>
         <link>https://ahimico.github.io/blog</link>
         <description>AhiMi Blog</description>
-        <lastBuildDate>Wed, 26 May 2021 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 26 Oct 2021 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
+        <item>
+            <title><![CDATA[console.log([`Arrays`])]]></title>
+            <link>https://ahimico.github.io/blog/console-log-arrays</link>
+            <guid>console-log-arrays</guid>
+            <pubDate>Tue, 26 Oct 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[Who ever you go there is need for holding these array operation piece together]]></description>
+        </item>
         <item>
             <title><![CDATA[Aptor Is All You Need]]></title>
             <link>https://ahimico.github.io/blog/aptor-is-all-you-need</link>
